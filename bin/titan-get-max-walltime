@@ -1,0 +1,24 @@
+#!/bin/bash
+# Daniel Graves
+
+TITAN_NUM_NODES=(125 312 3749)
+TITAN_WALL_TIMES=(2 6 12 24)
+
+if [ $# -ne 1 ]
+then
+    echo "usage: titan_get_max_walltime num_nodes"
+    exit
+fi
+
+i=0
+
+while [[ "$i" -lt "3" ]]
+do
+    if [[ "$1" -gt "${TITAN_NUM_NODES[$i]}" ]]
+    then i=`echo "$i + 1" | bc`
+    else break
+    fi
+done
+
+echo "${TITAN_WALL_TIMES[$i]}:00:00"
+

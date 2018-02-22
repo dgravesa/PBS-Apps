@@ -1,0 +1,64 @@
+#!/bin/bash
+
+function print_usage {
+    >&2 echo "usage: apps [command]"
+    >&2 echo
+    >&2 echo "available commands:"
+    >&2 echo "  help                                         - show this usage dialog"
+    >&2 echo "  list                                         - list available applications"
+    >&2 echo "  show     app_name  [--arguments]             - show application template"
+    >&2 echo "  create  [app_name] [-t pbs_template]         - create a new application"
+    >&2 echo "  delete   app_name  [--no-prompt]             - delete an application"
+    >&2 echo "  submit  [app_name] [--help] [--no-prompt]    - submit a job using an application"
+    >&2 echo
+    exit
+}
+
+#if [ $# -eq 0 ] || [ "$1" == "help" ]
+#then
+#    echo "usage: apps [command]"
+#    echo
+#    echo "available commands:"
+#    echo "  help - show this usage dialog"
+#    echo "  list - list available applications"
+#    echo "  show [app_name] - show application template"
+#    echo "  create - create a new application"
+#    echo "  submit - submit a job using an application"
+#    echo
+#    exit
+
+set -e
+
+python -B $APPS_ROOT/src/version_check.py
+
+if [ $# -eq 0 ]; then print_usage
+else
+    cmd=$1
+    shift
+    if [ "$cmd" == "help" ]; then print_usage
+    elif [ "$cmd" == "list" ]; then python -B $APPS_ROOT/src/list_apps.py $*
+    elif [ "$cmd" == "show" ]; then python -B $APPS_ROOT/src/show_app.py $*
+    elif [ "$cmd" == "create" ]; then python -B $APPS_ROOT/src/create_app.py $*
+    elif [ "$cmd" == "delete" ]; then python -B $APPS_ROOT/src/delete_app.py $*
+    elif [ "$cmd" == "submit" ]; then python -B $APPS_ROOT/src/submit_job.py $*
+    else
+        >&2 echo "error: unrecognized command: $cmd"
+        >&2 echo
+        print_usage
+    fi
+fi
+
+#elif [ $# -eq 2 ]; then
+#    if [ "$1" == "show" ]; then show-app $2
+#    elif [ "$1" == "delete" ]; then delete-app $2
+#    else print_usage; fi
+#fi
+
+
+#apps help
+#apps submit [app_name] [--no-prompt] [--help]
+#apps create [app_name] [-t pbs_template]
+#apps delete app_name [--no-prompt]
+#apps show app_name [--arguments]
+#apps list
+

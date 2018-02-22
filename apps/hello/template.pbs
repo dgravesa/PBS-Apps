@@ -1,0 +1,9 @@
+#PBS -N !JOB_NAME
+#PBS -A !ACCOUNT
+#PBS -l nodes=!NUM_NODES
+#PBS -l walltime=!WALL_TIME
+
+cd $MEMBERWORK
+
+aprun -n !NUM_NODES -N 1 echo !MESSAGE
+

@@ -1,0 +1,19 @@
+
+# Current status
+
+- argument values supplied to command line may not contain spaces
+- need to update submit_job.py to not prompt user when option is specified on command line
+
+# Recent updates
+
+- added discard option for detected arguments on app creation
+
+
+# My preferred workflow
+
+- get list of arguments using `apps show app_name --arguments`
+- for arguments with long path names, fill a default value using export (which lets me use tab-completion)
+    i.e. `export INPUT_FILE=/path/to/input/that_i_can_use_autocomplete_on.txt`
+- run `apps submit app_name` and fill remaining arguments on prompt, generally accepting defaults for those that have them
+- submit immediately on prompt; alternatively, if I am confident all defaults are correct, I can run `apps submit app_name --no-prompt`
+

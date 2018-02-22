@@ -1,0 +1,9 @@
+#%Module
+
+set ROOT /home/dgravesa/Projects/PBS-Apps
+setenv APPS_ROOT $ROOT
+setenv APPS_DIR $ROOT/apps
+
+prepend-path PATH $ROOT/bin
+prepend-path PYTHONPATH $ROOT/src
+
