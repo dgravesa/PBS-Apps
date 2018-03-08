@@ -11,6 +11,4 @@ These rules may either be default value or a command using other input arguments
 From these rules, a dependency graph is generated and solved, and a prompt order is created for the application.
 When a job is submitted, users will be prompted to accept a default value or to supply their own for each argument to the PBS script.
 
-More information and examples will be provided in the Wiki over time.
-For now, an example application is given in the `apps/hello` directory.
-
+### [Go to Wiki](https://github.com/dgravesa/PBS-Apps/wiki)
